@@ -28,7 +28,6 @@ namespace Sandbox.ParametersObject
 
         public class Initializer
         {
-
             public Initializer(int requiredParameter)
             {
                 OptionalParameter = OPTIONAL_PARAMETER_DEFAULT;
@@ -40,7 +39,7 @@ namespace Sandbox.ParametersObject
 
             public ParametersObject Create()
             {
-                if (RequiredParameter < REQUIRED_PARAMETER_MINIMUM) 
+                if (RequiredParameter < REQUIRED_PARAMETER_MINIMUM)
                     throw new ArgumentOutOfRangeException("RequiredParameter");
 
                 return new ParametersObject(this);

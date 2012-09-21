@@ -13,7 +13,7 @@ namespace Sandbox.ParametersObject
         {
             const string expectedOptionalArgument = EXPECTED_OPTIONAL_ARGUMENT;
             const int expectedRequiredArgument =
-                ParametersObject.REQUIRED_PARAMETER_MINIMUM + 1;
+                ParametersObject.REQUIRED_PARAMETER_MINIMUM;
 
             var result = new ParametersObject.Initializer
                 (requiredParameter: expectedRequiredArgument)
@@ -33,7 +33,7 @@ namespace Sandbox.ParametersObject
                 = ParametersObject.OPTIONAL_PARAMETER_DEFAULT;
 
             const int expectedRequiredArgument =
-                ParametersObject.REQUIRED_PARAMETER_MINIMUM + 1;
+                ParametersObject.REQUIRED_PARAMETER_MINIMUM;
 
             var result = new ParametersObject.Initializer
                 (requiredParameter: expectedRequiredArgument)
