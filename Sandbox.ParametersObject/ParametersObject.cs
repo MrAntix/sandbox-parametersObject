@@ -4,6 +4,9 @@ namespace Sandbox.ParametersObject
 {
     public class ParametersObject
     {
+        public const string OPTIONAL_PARAMETER_DEFAULT = "(not set)";
+        public const int REQUIRED_PARAMETER_MINIMUM = 25;
+
         readonly string _optionalParameter;
         readonly int _requiredParameter;
 
@@ -25,7 +28,6 @@ namespace Sandbox.ParametersObject
 
         public class Initializer
         {
-            public const string OPTIONAL_PARAMETER_DEFAULT = "(not set)";
 
             public Initializer(int requiredParameter)
             {
@@ -38,7 +40,8 @@ namespace Sandbox.ParametersObject
 
             public ParametersObject Create()
             {
-                if (RequiredParameter < 25) throw new ArgumentOutOfRangeException("RequiredParameter");
+                if (RequiredParameter < REQUIRED_PARAMETER_MINIMUM) 
+                    throw new ArgumentOutOfRangeException("RequiredParameter");
 
                 return new ParametersObject(this);
             }
