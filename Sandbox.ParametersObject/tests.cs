@@ -15,7 +15,7 @@ namespace Sandbox.ParametersObject
             const int expectedRequiredArgument =
                 ParametersObject.REQUIRED_PARAMETER_MINIMUM;
 
-            var result = ParametersObject.Create(
+            var result = ParametersObject.Create( 
                 expectedRequiredArgument,
                 i => { i.OptionalParameter = expectedOptionalArgument; });
 
