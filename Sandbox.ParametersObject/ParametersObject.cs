@@ -26,6 +26,26 @@ namespace Sandbox.ParametersObject
             _requiredParameter = data.RequiredParameter;
         }
 
+        public static ParametersObject Create( 
+            int requiredParameter)
+        {
+            return Create(requiredParameter, i => { });
+        }
+
+        public static ParametersObject Create( 
+            int requiredParameter,Action<Initializer> assign)
+        {
+            if (assign == null) throw new ArgumentNullException("assign");
+
+            var i = new Initializer(requiredParameter);
+            assign(i);
+
+            if (i.RequiredParameter < REQUIRED_PARAMETER_MINIMUM)
+                throw new ArgumentOutOfRangeException("RequiredParameter");
+
+            return new ParametersObject(i);
+        }
+
         public class Initializer
         {
             public Initializer(int requiredParameter)
@@ -36,14 +56,6 @@ namespace Sandbox.ParametersObject
 
             public string OptionalParameter { get; set; }
             public int RequiredParameter { get; private set; }
-
-            public ParametersObject Create()
-            {
-                if (RequiredParameter < REQUIRED_PARAMETER_MINIMUM)
-                    throw new ArgumentOutOfRangeException("RequiredParameter");
-
-                return new ParametersObject(this);
-            }
         }
     }
 }

@@ -15,12 +15,9 @@ namespace Sandbox.ParametersObject
             const int expectedRequiredArgument =
                 ParametersObject.REQUIRED_PARAMETER_MINIMUM;
 
-            var result = new ParametersObject.Initializer
-                (requiredParameter: expectedRequiredArgument)
-                {
-                    OptionalParameter = expectedOptionalArgument
-                }
-                .Create();
+            var result = ParametersObject.Create(
+                expectedRequiredArgument,
+                i => { i.OptionalParameter = expectedOptionalArgument; });
 
             Assert.Equal(expectedOptionalArgument, result.OptionalParameter);
             Assert.Equal(expectedRequiredArgument, result.RequiredParameter);
@@ -35,9 +32,7 @@ namespace Sandbox.ParametersObject
             const int expectedRequiredArgument =
                 ParametersObject.REQUIRED_PARAMETER_MINIMUM;
 
-            var result = new ParametersObject.Initializer
-                (requiredParameter: expectedRequiredArgument)
-                .Create();
+            var result = ParametersObject.Create(expectedRequiredArgument);
 
             Assert.Equal(expectedOptionalArgument, result.OptionalParameter);
             Assert.Equal(expectedRequiredArgument, result.RequiredParameter);
@@ -51,11 +46,10 @@ namespace Sandbox.ParametersObject
                 ParametersObject.REQUIRED_PARAMETER_MINIMUM - 1;
 
             var ex = Assert.Throws<ArgumentOutOfRangeException>(
-                () => new ParametersObject.Initializer
-                          (requiredParameter: expectedRequiredArgument)
-                    {
-                        OptionalParameter = expectedOptionalArgument
-                    }.Create());
+                () => ParametersObject.Create(
+                    expectedRequiredArgument,
+                    i => { i.OptionalParameter = expectedOptionalArgument; })
+                );
 
             Assert.Equal("RequiredParameter", ex.ParamName);
         }
